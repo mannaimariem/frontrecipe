@@ -9,6 +9,7 @@ const Add = ({ show, handleClose, addMovie }) => {
     rating: 1,
     description: "",
     posterURL: "",
+    trailer: "",
   });
   const onStarClick = (nextValue) => {
     setNewMovie({ ...newMovie, rating: nextValue });
@@ -59,6 +60,16 @@ const Add = ({ show, handleClose, addMovie }) => {
               />
             </Form.Group>
 
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Trailer link</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter trailer link"
+                name="trailer"
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <br />
             <Form.Group className="mb-3">
               <Form.Label>Movie Rating</Form.Label>
               <br />
@@ -76,7 +87,13 @@ const Add = ({ show, handleClose, addMovie }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={()=>{addMovie(newMovie) ; handleClose()}}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              addMovie(newMovie);
+              handleClose();
+            }}
+          >
             Add
           </Button>
         </Modal.Footer>

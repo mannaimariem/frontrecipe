@@ -8,6 +8,7 @@ const MovieList = ({ movies, addMovie }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+ 
   return (
     <div>
       <button onClick={handleShow}> Add </button>
