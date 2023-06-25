@@ -1,31 +1,28 @@
 import React from "react";
-import { useState } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import StarRatingComponent from "react-star-rating-component";
 
-const Add = ({ show, handleClose, addRecipe }) => {
-  const [newRecipe, setNewRecipe] = useState({
-    title: "",
-    rating: 1,
-    description: "",
-    posterURL: "",
-    ingredients: "",
-    preparation: "",
-  });
+const UpdateRecipeModal = ({
+  show,
+  handleClose,
+  handleUpdate,
+  recipe,
+  handleInputChange,
+}) => {
   const onStarClick = (nextValue) => {
-    setNewRecipe({ ...newRecipe, rating: nextValue });
-  };
-  const handleChange = (e) => {
-    setNewRecipe({
-      ...newRecipe,
-      [e.target.name]: e.target.value,
+    handleInputChange({
+      target: {
+        name: "rating",
+        value: nextValue,
+      },
     });
   };
+
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add a recipe</Modal.Title>
+          <Modal.Title>Update Recipe</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -36,7 +33,8 @@ const Add = ({ show, handleClose, addRecipe }) => {
                   type="text"
                   placeholder="Enter recipe name"
                   name="title"
-                  onChange={handleChange}
+                  value={recipe.title}
+                  onChange={handleInputChange}
                 />
               </Form.Group>
 
@@ -46,7 +44,8 @@ const Add = ({ show, handleClose, addRecipe }) => {
                   type="text"
                   placeholder="Enter picture url"
                   name="posterURL"
-                  onChange={handleChange}
+                  value={recipe.posterURL}
+                  onChange={handleInputChange}
                 />
               </Form.Group>
             </Row>
@@ -57,39 +56,45 @@ const Add = ({ show, handleClose, addRecipe }) => {
                 as="textarea"
                 placeholder="Describe the recipe"
                 name="description"
-                onChange={handleChange}
+                value={recipe.description}
+                onChange={handleInputChange}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridAddress1">
-              <Form.Label>Ingrediants</Form.Label>
+              <Form.Label>Ingredients</Form.Label>
               <Form.Control
                 as="textarea"
                 placeholder="Enter ingredients"
                 name="ingredients"
-                onChange={handleChange}
+                value={recipe.ingredients}
+                onChange={handleInputChange}
               />
             </Form.Group>
+
             <br />
+
             <Form.Group className="mb-3" controlId="formGridAddress1">
               <Form.Label>Preparation</Form.Label>
               <Form.Control
                 as="textarea"
                 placeholder="Enter preparation steps"
                 name="preparation"
-                onChange={handleChange}
+                value={recipe.preparation}
+                onChange={handleInputChange}
               />
             </Form.Group>
+
             <br />
+
             <Form.Group className="mb-3">
               <Form.Label>Recipe Rating</Form.Label>
               <br />
               <StarRatingComponent
                 name="rating"
                 starCount={5}
-                value={newRecipe.rating}
+                value={recipe.rating}
                 onStarClick={onStarClick}
-                onChange={handleChange}
               />
             </Form.Group>
           </Form>
@@ -98,14 +103,8 @@ const Add = ({ show, handleClose, addRecipe }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              addRecipe(newRecipe);
-              handleClose();
-            }}
-          >
-            Add
+          <Button variant="primary" onClick={handleUpdate}>
+            Update
           </Button>
         </Modal.Footer>
       </Modal>
@@ -113,4 +112,4 @@ const Add = ({ show, handleClose, addRecipe }) => {
   );
 };
 
-export default Add;
+export default UpdateRecipeModal;

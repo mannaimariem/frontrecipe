@@ -9,7 +9,7 @@ function Search({ search, setRate, newRate }) {
     <div>
       <input
         type="text"
-        placeholder="Search movies"
+        placeholder="Search recipes"
         onChange={(e) => search(e.target.value)}
       />
       <StarRatingComponent
