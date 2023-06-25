@@ -11,8 +11,9 @@ function ReadMore({ recipes }) {
   ]);
 
   const { id } = useParams();
-  const foundRecipe = recipes.find((el) => el.id === +id);
-
+  console.log(id);
+  console.log(recipes);
+  const foundRecipe = recipes.find((el) => el._id === String(id));
   const addComnt = (comment) => {
     setComments(comments.concat(comment));
   };

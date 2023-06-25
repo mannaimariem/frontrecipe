@@ -7,10 +7,11 @@ const RecipeCard = ({ recipe, deleteRecipe, updateRecipe }) => {
   const [rating, setRating] = useState(1);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [updatedRecipe, setUpdatedRecipe] = useState({
+    _id: recipe._id,
     title: recipe.title,
     rating: recipe.rating,
     description: recipe.description,
-    posterURL: recipe.posterURL,
+    posterUrl: recipe.posterUrl,
     ingredients: recipe.ingredients,
     preparation: recipe.preparation,
   });
@@ -26,10 +27,11 @@ const RecipeCard = ({ recipe, deleteRecipe, updateRecipe }) => {
   const handleUpdateModalOpen = () => {
     setShowUpdateModal(true);
     setUpdatedRecipe({
+      _id: recipe._id,
       title: recipe.title,
       rating: recipe.rating,
       description: recipe.description,
-      posterURL: recipe.posterURL,
+      posterUrl: recipe.posterUrl,
       ingredients: recipe.ingredients,
       preparation: recipe.preparation,
     });
@@ -37,7 +39,7 @@ const RecipeCard = ({ recipe, deleteRecipe, updateRecipe }) => {
 
   const handleUpdateRecipe = () => {
     // Call the updateRecipe function with the updatedRecipe data
-    updateRecipe(recipe.id, updatedRecipe);
+    updateRecipe(recipe._id, updatedRecipe);
     setShowUpdateModal(false);
   };
 
@@ -56,7 +58,7 @@ const RecipeCard = ({ recipe, deleteRecipe, updateRecipe }) => {
           <div className="movie_header">
             <img
               className="locandina"
-              src={recipe.posterURL}
+              src={recipe.posterUrl}
               alt="recipe poster"
             />
             <h1>{recipe.title}</h1>
@@ -70,9 +72,9 @@ const RecipeCard = ({ recipe, deleteRecipe, updateRecipe }) => {
           <div className="movie_desc">
             <p className="text">{recipe.description}</p>
           </div>
-          <button onClick={() => deleteRecipe(recipe.id)}>Delete</button>
+          <button onClick={() => deleteRecipe(recipe._id)}>Delete</button>
           <button onClick={handleUpdateModalOpen}>Update</button>
-          <Link to={`/recipe/${recipe.id}`}>Read More</Link>
+          <Link to={`/recipe/${recipe._id}`}>Read More</Link>
         </div>
         <div className="blur_back"></div>
       </div>

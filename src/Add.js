@@ -4,14 +4,16 @@ import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import StarRatingComponent from "react-star-rating-component";
 
 const Add = ({ show, handleClose, addRecipe }) => {
+  
   const [newRecipe, setNewRecipe] = useState({
     title: "",
     rating: 1,
     description: "",
-    posterURL: "",
+    posterUrl: "",
     ingredients: "",
     preparation: "",
   });
+
   const onStarClick = (nextValue) => {
     setNewRecipe({ ...newRecipe, rating: nextValue });
   };
@@ -45,7 +47,7 @@ const Add = ({ show, handleClose, addRecipe }) => {
                 <Form.Control
                   type="text"
                   placeholder="Enter picture url"
-                  name="posterURL"
+                  name="posterUrl"
                   onChange={handleChange}
                 />
               </Form.Group>

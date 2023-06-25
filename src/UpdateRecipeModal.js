@@ -43,8 +43,8 @@ const UpdateRecipeModal = ({
                 <Form.Control
                   type="text"
                   placeholder="Enter picture url"
-                  name="posterURL"
-                  value={recipe.posterURL}
+                  name="posterUrl"
+                  value={recipe.posterUrl}
                   onChange={handleInputChange}
                 />
               </Form.Group>
